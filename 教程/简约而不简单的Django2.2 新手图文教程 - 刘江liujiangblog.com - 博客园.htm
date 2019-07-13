@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="never">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>简约而不简单的Django2.2 新手图文教程 - 刘江liujiangblog.com - 博客园</title>
+    <meta property="og:description" content="通过大量图片示例，手把手的带你创建一个要素齐全的django项目。">
+    <link type="text/css" rel="stylesheet" href="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-darkgreentrip.css">
+<link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-darkgreentrip-mobile.css">
+    <link title="RSS" type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/feixuelove1009/rss">
+    <link title="RSD" type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/feixuelove1009/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/feixuelove1009/wlwmanifest.xml">
+    <script async="" src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js"></script><script type="text/javascript" src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/encoder.js"></script><script src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery-2.js"></script>
+    <script>var currentBlogId=283002;var currentBlogApp='feixuelove1009',cb_enable_mathjax=false;var isLogined=false;</script>
+    <script src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="https://www.cnblogs.com/feixuelove1009/"><img id="blogLogo" src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="https://www.cnblogs.com/feixuelove1009/">刘江的博客</a></h1>
+<h2>个人博客和教程网站：www.liujiangblog.com欢迎访问！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/feixuelove1009/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com">联系</a></li>
+<li>
+<!----></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 55&nbsp; </span>
+<span id="stats_article_count">文章 - 38&nbsp; </span>
+<span id="stats-comment_count">评论 - 288</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+        <div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/feixuelove1009/p/5823135.html">简约而不简单的Django2.2 新手图文教程</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body" class="blogpost-body"><p><span style="font-size: 14pt; color: #000000;"><strong>&nbsp;欢迎大家访问我的个人网站《<strong>刘江的博客和教程</strong>》<a href="http://www.liujiangblog.com/" target="blank"><span style="color: #000000;">www.liujiangblog.com</span></a></strong></span></p>
+<p><span style="font-size: 14pt; color: #000000;"><strong>&nbsp;主要分享Python 及Django教程以及相关的博客！</strong></span></p>
+<p><span style="color: #000000; font-size: 18px;"><strong>版权所有，转载需注明来源！</strong></span></p>
+<p>&nbsp;</p>
+<p>2019年7月更新。</p>
+<p>&nbsp;</p>
+<p>本文面向有一些的Python基础，但刚接触web框架的Django初学者。</p>
+<p>环境：Windows10 　　Python3.6/3.7 　　Pycharm2018 　　Django 2.2版　　pip3</p>
+<hr>
+<h1 id="django">一、Django简介</h1>
+<p>百度百科：一个开放源代码的Web框架，由Python语言编写......</p>
+<p>重点：一个大而全的框架，啥都替你考虑好了。</p>
+<h2 id="1-web">1. web框架介绍</h2>
+<p>具体介绍Django之前，必须先介绍Web框架的概念。</p>
+<p>Web框架： 别人已经设定好的一个Web网站模板，你学习它的规则，然后“填空”或“修改”成你自己需要的样子。</p>
+<p>一般Web框架的架构是这样的：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/ut4oiyzegcoudpqu00wqnj2c/image.png" alt="image.png-134kB"></p>
+<p>其它基于Python的Web框架，如Tornado、Flask、Webpy都是在这个范围内进行增删裁剪的。例如Tornado用的是自己的异
+步非阻塞通信协议，Flask则只提供了最精简和基本的框架，Django直接使用WSGI通信协议，并实现了大部分Web应用相关的功能。</p>
+<h2 id="2-mvcmtv">2. MVC/MTV介绍</h2>
+<p>MVC:</p>
+<p>百度百科：全名Model View 
+Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件工程典范，用业务逻辑、数据、界面显示
+分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。</p>
+<p>通俗解释：一种代码和文件的组织和管理形式！不要被缩写吓到了，这其实就是把代码分散到不同的文件中，把不同类型的文件又放到不同目录下的一种做法，然后取了个高大上的名字。当然，它带来的好处有很多，比如前后端分离，松耦合等等，在使用中你慢慢体会就会逐渐明白它。</p>
+<p>其中：</p>
+<ul>
+<li>
+<p>模型(model)：定义数据库相关的内容，一般放在models.py文件中。</p>
+</li>
+<li>
+<p>视图(view)：定义HTML等静态网页文件相关，也就是那些HTML、CSS、JS等前端的东西。</p>
+</li>
+<li>
+<p>控制器(controller)：定义业务逻辑相关，就是你的主要代码。　　</p>
+</li>
+</ul>
+<p>MTV:</p>
+<p>Django觉得MVC的字面意思很别扭，不太符合它的理念，就给它改了一下。view不再是HTML相关，而是主业务逻辑V了，相当于控制器。
+HTML被放在Templates中，称作模板T，于是MVC就变成了MTV。这其实就是一个文字游戏，和MVC本质上是一样的，换了个名字和叫法而已，
+换汤不换药。</p>
+<h2 id="3-djangomtv">3. Django的MTV模型组织</h2>
+<p>目录分开，就必须有机制将他们在内里进行耦合。在Django中，典型的业务流程如下图所示：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/nlhh3j276n2aw2bsnllbzn9o/image.png" alt="image.png-164.5kB"></p>
+<h1 id="django_1">二、Django项目实例</h1>
+<h2 id="1">1. 程序安装</h2>
+<p>Python3.6、pip3及Pycharm请自行安装。</p>
+<p>（1）安装Django：</p>
+<p>这里只介绍较为简单的pip3命令安装方式。</p>
+<p><code>win+r</code>，调出cmd，运行命令：</p>
+<div class="cnblogs_code">
+<pre>pip3 <span style="color: #0000ff;">install</span> django</pre>
+</div>
+<p>自动安装Pypi提供的最新的Django版本。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/2iwdyc8r0szfhnm4jfw315r5/image.png" alt="image.png-23.3kB"></p>
+<p>&nbsp;注意：</p>
+<ul>
+<li>建议升级一下pip3，命令<code>python -m pip install --upgrade pip</code></li>
+<li>如果你以前安装过django，则会使用先前缓存的安装文件</li>
+<li>使用cmd，请以管理员身份运行，否则可能出现权限问题</li>
+</ul>
+<p>（2）配置系统环境</p>
+<p>成功安装Django后，在下图中的路径可找到<code>django-admin.exe</code>文件，将它加入操作系统环境变量中。这样以后调用会比较方便。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/a4x1zw4ym2fzsiv0jv149esn/image.png" alt="image.png-43.4kB"></p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/pexotta0vxdnubx301zm4suz/image.png" alt="image.png-41kB"></p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/eht19acivanblybpyk8mrlne/image.png" alt="image.png-9.9kB"></p>
+<p>运行<code>django-admin help</code>，能看到下面的内容表示安装过程OK。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/ypcwozwyfegbh0rtkyu1u4p6/image.png" alt="image.png-30.2kB"></p>
+<p>或者进入Python交互式环境（注意一定要进入刚才安装了Django的Python解释器），按下面所示查看安装版本：</p>
+<div class="codehilite">
+<div class="cnblogs_code">
+<pre>&gt;&gt;&gt;<span style="color: #000000;"> import django
+</span>&gt;&gt;&gt;<span style="color: #000000;"> django.get_version()
+</span><span style="color: #800080;">2.2</span></pre>
+</div>
+<p>再或者使用<code>pip list</code>命令，查看是否存在Django模块。</p>
+</div>
+<h2 id="2-django">2. 创建Django项目</h2>
+<p>在Linux等命令行界面下，使用Django提供的命令和vim也能进行项目开发。但是这里推荐使用Pycharm这个目前最好的Python开发IDE，它功能强大，界面友好。（下面所有的操作都在Pycharm中进行。）</p>
+<p>点击<code>file--&gt;new project</code>，出现下面的对话框。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/6ta454zse8l469uzvicj13h5/image.png" alt="image.png-71.9kB"></p>
+<p>选择Django栏目，输入项目名称，这里采用国际惯例的mysite。选择先前安装好Django2.2的Python解释器版本，点击create创建。（注：这里暂不考虑虚拟环境问题）</p>
+<p>选择<code>open in current window</code>，在当前窗口打开。</p>
+<p>Django将自动生成下面的目录结构：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/kuskmjv91v4izbopaqfbt0f8/image.png" alt="image.png-33.7kB"></p>
+<p>与项目同名的mysite目录中是项目核心文件。templates目录是HTML文件存放处（这是Pycharm安利给我们的），也就是MTV中的T。<code>manage.py</code>是Django项目管理文件。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/vovpe1vnucn84bofz14boeom/image.png" alt="image.png-36kB"></p>
+<h2 id="3-app">3. 创建APP</h2>
+<p>在每个Django项目中可以包含多个APP，相当于一个大型项目中的分系统、子模块、功能部件等等，相互之间比较独立，但也可以有联系。所有的APP共享项目资源。</p>
+<p>在Pycharm下方的Terminal终端中输入命令：</p>
+<div class="cnblogs_code">
+<pre>python manage.py startapp <span style="color: #0000ff;">login</span></pre>
+</div>
+<p>这样就创建了一个叫做login的APP，django自动生成“login”文件夹，及一系列文件：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/6aj77azmlchiom2ej4ab8xky/image.png" alt="image.png-25.7kB"></p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/29fkr4xugr5kb5ummzonbts5/image.png" alt="image.png-20.6kB"></p>
+<h2 id="4">4. 编写路由</h2>
+<p>路由是浏览器输入url，在Django服务器响应url的转发中心。路由都写在urls文件里，它将浏览器输入的url映射到相应的业务处理逻辑也就是视图。简单的urls编写方法如下图：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/os7kzalonar9kij34c7bbcd3/image.png" alt="image.png-137.1kB"></p>
+<h2 id="5">5. 编写视图函数</h2>
+<p>路由转发用户请求到视图函数。视图函数处理用户请求，也就是编写业务处理逻辑，一般都在<code>views.py</code>文件里。我们下面写一个简单的视图函数：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/42pbe7j3xcyxt23s6ppvv90r/image.png" alt="image.png-97.8kB"></p>
+<p>通过上面两个步骤，我们将<code>index</code>这个url指向了views里的<code>index()</code>视图函数，它接收用户请求，并返回一个“hello world”字符串。</p>
+<h2 id="6-web">6. 运行web服务</h2>
+<p>现在我们已经可以将web服务运行起来了。</p>
+<p>命令行的方式是：</p>
+<div class="codehilite">
+<div class="cnblogs_code">
+<pre>python manage.py runserver <span style="color: #800080;">127.0</span>.<span style="color: #800080;">0.1</span>:<span style="color: #800080;">8000</span></pre>
+</div>
+</div>
+<p>但在Pycharm中，你可以这么干，在上部工具栏中找到下面图示的图标。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/jtbynlmdohrzazyi6cp0lw0e/image.png" alt="image.png-8.4kB"></p>
+<p>点击下拉箭头：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/9qg12volo010mxakgadt4plo/image.png" alt="image.png-9.3kB"></p>
+<p>点击<code>edit configurations</code>:</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/gnm8m33zuh5z8n4vtbiqb9h8/image.png" alt="image.png-45.9kB"></p>
+<p>在host中填入<code>127.0.0.1</code>，port中填入8000。</p>
+<p>OK确定之后，点击绿色的三角，web服务就运行起来了。</p>
+<p>然后按下图所示点击链接：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/6ty8wa4kzrwdqg5t3ztaeehh/image.png" alt="image.png-47.7kB"></p>
+<p>自动跳转到浏览器程序界面。显示的却是下图的404页面：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/5e5lxw6szuza0defam33n7xp/image.png" alt="image.png-52.5kB"></p>
+<p>修改一下url，添加“/index/”，就一切ok了！</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/4vfv2yisqw5yvzhkdgkp6um4/image.png" alt="image.png-6.6kB"></p>
+<p>可以看到我们的'Hello World!'欢迎词了！</p>
+<p>至此，一个最简单的Django编写的web服务就启动成功了。</p>
+<h2 id="7-html">7. 返回HTML文件</h2>
+<p>上面我们返回给用户浏览器的是什么？一个字符串！实际上这肯定不行，通常我们都是将HTML文件返回给用户。</p>
+<p>下面，我们在templates目录中新建一个<code>index.html</code>文件：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/he96xvjnfsnpo22w7m711qbb/image.png" alt="image.png-97kB"></p>
+<p>代码如下：</p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>test<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">h1 </span><span style="color: #ff0000;">style</span><span style="color: #0000ff;">="color: black"</span><span style="color: #0000ff;">&gt;</span>Hello World!<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/c0w5ffpwuqgnz3iwctpxfg5y/image.png" alt="image.png-83.5kB"></p>
+<p>再回到views.py文件，编辑index视图，注释当前的return语句，导入render方法，换上新的return语句：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/yol5dfwzz4gnie67dz9mbxjb/image.png" alt="image.png-97.4kB"></p>
+<p>为了让django知道我们的HTML文件在哪里，需要修改settings文件的相应内容。但默认情况下，它正好适用，你无需修改。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/jtcxs8cfuaxaqrfo46nuj8kc/image.png" alt="image.png-98kB"></p>
+<p>接下来，我们可以重新启动web服务。在浏览器刷新一下，你会看到带有样式的“Hello World”。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/5h3l5228akpa13kcqr2vtphm/image.png" alt="image.png-10.5kB"></p>
+<p>注：这里有个小技巧，在多次频繁重启服务时，可能会不能及时释放端口，容易启动不了服务，修改一下端口就OK了。</p>
+<h2 id="8">8. 使用静态文件</h2>
+<p>我们已经可以将HTML文件返还给用户了，但是这还不够，前端三大块HTML、CSS、JavaScript，还有各种插件，它们齐全才是一个完整的页面。在Django中，一般将这些静态文件放在static目录中。</p>
+<p>接下来，在mysite中新建一个static目录。（下面导入的静态文件仅用于流程展示，并不实际使用它做点什么。）</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/pn3o5bbxfedy0dp3iui4ntiq/image.png" alt="image.png-21.7kB"></p>
+<p>你的CSS、JS和各种插件都可以放置在这个目录里。比如这里，我们又在static下新建了一个js目录，然后拷贝了一个<code>jquery-3.2.1.min.js</code>进来：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/bt1ajekgyazbtrtkaujfgbqd/image.png" alt="image.png-29.9kB"></p>
+<p>为了让Django知道这个static目录的存在，并能够找到这个目录，需要对settings进行配置：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/rojcs2lfrov0ht1rqwgu7abl/image.png" alt="image.png-128.9kB"></p>
+<p>现在，我们就可以在<code>index.html</code>中引入js文件了：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/hocneotjt7nqbqrf91spw1y1/image.png" alt="image.png-101kB"></p>
+<p>重新启动web服务，刷新浏览器，查看结果。当然，你啥都看不出来，因为仅仅引入了一个jqurey而已，^-^.</p>
+<h2 id="9">9. 接收用户发送的数据</h2>
+<p>前面，我们将一个要素齐全的HTML文件返还给了用户浏览器。但这还不够，因为web服务器和用户之间没有动态交互。</p>
+<p>下面我们设计一个表单，让用户输入用户名和密码，提交给index这个url，服务器将接收到这些数据。</p>
+<p>先修改<code>index.html</code>文件。删除原来的内容，写入下面的内容： 　　</p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>首页<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>用户输入：<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">form </span><span style="color: #ff0000;">action</span><span style="color: #0000ff;">="/index/"</span><span style="color: #ff0000;"> method</span><span style="color: #0000ff;">="post"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+        用户名：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="username"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span><span style="color: #000000;">
+        密码：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="password"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="password"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="submit"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="提交"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">form</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/dph1yry0ne0n2jco2rtyqd85/image.png" alt="image.png-120.2kB"></p>
+<p>重启web服务，刷新页面，如下图所示：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/7jy24q7kt8wf88i5yoixmu2m/image.png" alt="image.png-14.5kB"></p>
+<p>这时候我们先不要往输入框内输入信息。我们先修改views.py文件：</p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">from</span> django.shortcuts <span style="color: #0000ff;">import</span><span style="color: #000000;"> render
+</span><span style="color: #0000ff;">from</span> django.shortcuts <span style="color: #0000ff;">import</span><span style="color: #000000;"> HttpResponse
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;"> Create your views here.</span>
+
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> index(request):
+    </span><span style="color: #0000ff;">if</span> request.method == <span style="color: #800000;">'</span><span style="color: #800000;">POST</span><span style="color: #800000;">'</span><span style="color: #000000;">:
+        username </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">username</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        password </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">password</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(username, password)
+    </span><span style="color: #0000ff;">return</span> render(request, <span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span>)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/r4kxpv2unxev00d5ke73z57v/image.png" alt="image.png-104kB"></p>
+<p>重启web服务，刷新index页面，然后我们随便输入点什么东西，点击提交，结果出现了下面的403页面。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/sl5vsot6itpa7mo2vu6zy7pe/image.png" alt="image.png-79.1kB"></p>
+<p>这是因为django有一个跨站请求保护机制，这需要我们在<code>index.html</code>文件中加入一行<code>{% csrf_token %}</code>。</p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>首页<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>用户输入：<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">form </span><span style="color: #ff0000;">action</span><span style="color: #0000ff;">="/index/"</span><span style="color: #ff0000;"> method</span><span style="color: #0000ff;">="post"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+        {% csrf_token %}   </span><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">加入这行 </span><span style="color: #008000;">--&gt;</span><span style="color: #000000;"> 
+        用户名：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="username"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span><span style="color: #000000;">
+        密码：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="password"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="password"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="submit"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="提交"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">form</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/b0e5d8zzxnjk6fdswc3ihvhi/image.png" alt="image.png-126.3kB"></p>
+<p>再次进入浏览器，刷新index页面，输入点东西，这次就能成功提交了，然后我们在Pycharm中可以看到print语句打印出来的相应数据了。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/2prjqqoi16o4m77x2hy8glcy/image.png" alt="image.png-58.9kB"></p>
+<h2 id="10">10. 返回动态页面</h2>
+<p>现在，我们收到了用户的数据，但返回给用户的依然是个静态页面。通常我们会根据用户的数据，进行处理后再返回给用户。</p>
+<p>先改造views.py文件：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/p5cq1tqpc3eppcvyedmss3i9/image.png" alt="image.png-101.3kB"></p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">from</span> django.shortcuts <span style="color: #0000ff;">import</span><span style="color: #000000;"> render
+</span><span style="color: #0000ff;">from</span> django.shortcuts <span style="color: #0000ff;">import</span><span style="color: #000000;"> HttpResponse
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;"> Create your views here.</span>
+<span style="color: #000000;">
+user_list </span>=<span style="color: #000000;"> []
+
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> index(request):
+    </span><span style="color: #0000ff;">if</span> request.method == <span style="color: #800000;">'</span><span style="color: #800000;">POST</span><span style="color: #800000;">'</span><span style="color: #000000;">:
+        username </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">username</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        password </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">password</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        </span><span style="color: #0000ff;">print</span><span style="color: #000000;">(username, password)
+        temp </span>= {<span style="color: #800000;">'</span><span style="color: #800000;">user</span><span style="color: #800000;">'</span>: username, <span style="color: #800000;">'</span><span style="color: #800000;">pwd</span><span style="color: #800000;">'</span><span style="color: #000000;">: password}
+        user_list.append(temp)
+    </span><span style="color: #0000ff;">return</span> render(request, <span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span>, {<span style="color: #800000;">'</span><span style="color: #800000;">data</span><span style="color: #800000;">'</span>: user_list})</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p>再改造<code>index.HTML</code>文件：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/9qg34d9dvlaikvsiaos9e0rl/image.png" alt="image.png-77.8kB"></p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;!</span><span style="color: #ff00ff;">DOCTYPE html</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">html </span><span style="color: #ff0000;">lang</span><span style="color: #0000ff;">="en"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">meta </span><span style="color: #ff0000;">charset</span><span style="color: #0000ff;">="UTF-8"</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>首页<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">title</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">head</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>用户输入：<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">form </span><span style="color: #ff0000;">action</span><span style="color: #0000ff;">="/index/"</span><span style="color: #ff0000;"> method</span><span style="color: #0000ff;">="post"</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+        {% csrf_token %}   </span><span style="color: #008000;">&lt;!--</span><span style="color: #008000;">加入这行 </span><span style="color: #008000;">--&gt;</span><span style="color: #000000;">
+        用户名：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="text"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="username"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span><span style="color: #000000;">
+        密码：</span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="password"</span><span style="color: #ff0000;"> name</span><span style="color: #0000ff;">="password"</span> <span style="color: #0000ff;">/&gt;&lt;</span><span style="color: #800000;">br </span><span style="color: #0000ff;">/&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">input </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="submit"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="提交"</span> <span style="color: #0000ff;">/&gt;</span>
+    <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">form</span><span style="color: #0000ff;">&gt;</span>
+
+    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>用户展示：<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">h1</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">table </span><span style="color: #ff0000;">border</span><span style="color: #0000ff;">="1"</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">thead</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>用户名<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>密码<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">thead</span><span style="color: #0000ff;">&gt;</span>
+            <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tbody</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                {% for item in data %}
+                </span><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span>
+                    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>{{ item.user }}<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+                    <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>{{ item.pwd }}<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">td</span><span style="color: #0000ff;">&gt;</span>
+                <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tr</span><span style="color: #0000ff;">&gt;</span><span style="color: #000000;">
+                {% endfor %}
+            </span><span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">tbody</span><span style="color: #0000ff;">&gt;</span>
+        <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">table</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">body</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">html</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p>说明：Django采用自己的模板语言，类似jinja2，根据提供的数据，替换掉HTML中的相应部分，详细语法入门后再深入学习。</p>
+<p>接下来，重启服务，刷新浏览器，多输入几次。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/gr7dufb04dm2htf1rl8g3ilj/image.png" alt="image.png-25kB"></p>
+<p>可以看到，我们获得了用户实时输入的数据，并将它实时展示在了用户页面上，这是个不错的交互过程。在Pycharm中，我们也能看到每次输入的数据。</p>
+<h2 id="11">11. 使用数据库</h2>
+<p>流程走到这里，django的MTV框架基本已经浮出水面了，只剩下最后的数据库部分了。</p>
+<p>上面我们虽然和用户交互得很好，但并没有保存任何数据，页面一旦关闭，或服务器重启，一切都将回到原始状态。</p>
+<p>使用数据库的需求是毫无疑问的，Django通过自带的ORM框架操作数据库，并且原生支持轻量级的sqlite3数据库。下面我们来看一看：</p>
+<p>使用数据库前，我们需要注册app：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/elwr16l1lilc9o0v3fikdv4l/image.png" alt="image.png-82.3kB"></p>
+<p>不注册它，你的数据库就不知道该给哪个app创建表。</p>
+<p>然后我们在settings中，配置数据库相关的参数，如果使用sqlite3，则不需要做任何修改。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/ou8apdkh30z7csi7r7miwo8s/image.png" alt="image.png-55.9kB"></p>
+<p>再编辑<code>models.py</code>文件，也就是MTV中的M。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/l3se3weygxcv5kjg9putssxx/image.png" alt="image.png-78.9kB"></p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">from</span> django.db <span style="color: #0000ff;">import</span><span style="color: #000000;"> models
+
+</span><span style="color: #008000;">#</span><span style="color: #008000;"> Create your models here.</span>
+
+
+<span style="color: #0000ff;">class</span><span style="color: #000000;"> UserInfo(models.Model):
+    user </span>= models.CharField(max_length=32<span style="color: #000000;">)
+    pwd </span>= models.CharField(max_length=32)</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p>这里我们创建了2个字段，分别保存用户的名字和密码。</p>
+<p>接下来要在Pycharm的Teminal中通过命令创建数据库的表了。有2条命令，分别是：</p>
+<div class="codehilite">
+<div class="cnblogs_code">
+<pre>python manage.py makemigrations</pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/gpmla2nrwa5zk3m48xhtij3i/image.png" alt="image.png-38.9kB"></p>
+<p>这会在login目录中的migrations目录中生成一个<code>0001_initial.py</code>迁移记录文件。</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/2wtx28e42niukz504nhwqygy/image.png" alt="image.png-32.1kB"></p>
+<p>再输入命令：</p>
+<div class="codehilite">
+<div class="cnblogs_code">
+<pre>python manage.py migrate</pre>
+</div>
+<p>&nbsp;</p>
+</div>
+<p>运行结果如下：</p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>D:\work\for_test\mysite&gt;<span style="color: #000000;">python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, </span><span style="color: #0000ff;">login</span><span style="color: #000000;">, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying </span><span style="color: #0000ff;">login</span><span style="color: #000000;">.0001_initial... OK
+  Applying sessions.0001_initial... OK</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p>这样，我们就在数据库中将所有app的数据表都创建好了。我们可以看到项目根目录下出现了一个<code>db.sqlite3</code>文件：</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/sj3xmebs8v56rhxyiszqx19c/image.png" alt="image.png-26.4kB"></p>
+<p>现在，我们来修改views.py中的业务逻辑</p>
+<p><img class="img-responsive" src="http://static.zybuluo.com/feixuelove1009/6us6usx8a1pr3e33mbwwb8ub/image.png" alt="image.png-143.8kB"></p>
+<div class="codehilite">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">from</span> django.shortcuts <span style="color: #0000ff;">import</span><span style="color: #000000;"> render
+</span><span style="color: #0000ff;">from</span> login <span style="color: #0000ff;">import</span> models  <span style="color: #008000;">#</span><span style="color: #008000;"> 导入models文件</span>
+
+<span style="color: #008000;">#</span><span style="color: #008000;"> Create your views here.</span>
+
+
+<span style="color: #0000ff;">def</span><span style="color: #000000;"> index(request):
+
+    </span><span style="color: #0000ff;">if</span> request.method == <span style="color: #800000;">'</span><span style="color: #800000;">POST</span><span style="color: #800000;">'</span><span style="color: #000000;">:
+        username </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">username</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        password </span>= request.POST.get(<span style="color: #800000;">'</span><span style="color: #800000;">password</span><span style="color: #800000;">'</span><span style="color: #000000;">)
+        </span><span style="color: #008000;">#</span><span style="color: #008000;"> 将数据保存到数据库</span>
+        models.UserInfo.objects.create(user=username, pwd=<span style="color: #000000;">password)
+
+    </span><span style="color: #008000;">#</span><span style="color: #008000;"> 从数据库中读取所有数据，注意缩进</span>
+    user_list =<span style="color: #000000;"> models.UserInfo.objects.all()
+    </span><span style="color: #0000ff;">return</span> render(request, <span style="color: #800000;">'</span><span style="color: #800000;">index.html</span><span style="color: #800000;">'</span>, {<span style="color: #800000;">'</span><span style="color: #800000;">data</span><span style="color: #800000;">'</span>: user_list})</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+</div>
+<p>重启web服务后，刷新浏览器页面，之后和用户交互的数据都能保存到数据库中。任何时候都可以从数据库中读取数据，展示到页面上，不会因为服务器中途关闭，丢失先前的数据了。</p>
+<p>至此，一个要素齐全，主体框架展示清晰的Django项目完成了，其实很简单是不是？</p>
+<p>全文其实并不是规范的Django项目开发和代码结构，但它够简单，而这是对新手最重要的！</p>
+<h1 id="django_2">三、 Django使用总结</h1>
+<p>Django作为Python必学Web框架，它的功能强大，内容全面，但同时也意味着限制颇多，灵活性低，可修改性差，这就是鱼和熊掌不可兼得
+了。我们学习Django，其实就是在学习一个软件，首先要理解它的基本原理，把握它的整体框架，牢记一些基本规则，剩下的就是不断深入细节，然后熟能生
+巧、经验多少的问题了，不存在多高深的不可掌握的技术。</p>
+<p>最后，原创不易，版权所有，转载需授权。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="https://www.cnblogs.com/feixuelove1009/tag/Django/">Django</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5823135,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow('606b6bf4-b00f-e611-9fc1-ac853d9f53cc');" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/feixuelove1009/" target="_blank"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/20160513160805.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/feixuelove1009/">刘江liujiangblog.com</a><br>
+            <a href="https://home.cnblogs.com/u/feixuelove1009/followees">关注 - 14</a><br>
+            <a href="https://home.cnblogs.com/u/feixuelove1009/followers">粉丝 - 333</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow('606b6bf4-b00f-e611-9fc1-ac853d9f53cc');return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5823135,'Digg')">
+        <span class="diggnum" id="digg_count">105</span>
+    </div>
+    <div class="buryit" onclick="votePost(5823135,'Bury')">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="https://www.cnblogs.com/feixuelove1009/p/5798479.html" class="p_n_p_prefix">« </a> 上一篇：<a href="https://www.cnblogs.com/feixuelove1009/p/5798479.html" title="发布于2016-08-24 16:33">jQuery 3.1 API中文文档</a><br><a href="https://www.cnblogs.com/feixuelove1009/p/5855295.html" class="p_n_p_prefix">» </a> 下一篇：<a href="https://www.cnblogs.com/feixuelove1009/p/5855295.html" title="发布于2016-09-10 10:52">Django之路由、模板和模型系统</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-08-30 23:54</span> <a href="https://www.cnblogs.com/feixuelove1009/">刘江liujiangblog.com</a> 阅读(<span id="post_view_count">207424</span>) 评论(<span id="post_comment_count">84</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5823135" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5823135);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=283002,cb_entryId=5823135,cb_blogApp=currentBlogApp,cb_blogUserGuid='606b6bf4-b00f-e611-9fc1-ac853d9f53cc',cb_entryCreatedDate='2016/8/30 23:54:00';loadViewCount(cb_entryId);var cb_postType=1;var isMarkdown=false;</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"><div class="pager"><a href="#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3847687" class="layer">#51楼</a><a name="3847687" id="comment_anchor_3847687"></a>  <span class="comment_date">2017-11-22 18:00</span> <a id="a_comment_author_3847687" href="https://www.cnblogs.com/appleyuchi/" target="_blank">PythonLearner</a> <a href="http://msg.cnblogs.com/send/PythonLearner" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3847687" class="blog_comment_body">Exception Value:	<br>no such table: cmdb_userinfo</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3847687,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3847687,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3850695" class="layer">#52楼</a><a name="3850695" id="comment_anchor_3850695"></a>  <span class="comment_date">2017-11-26 20:51</span> <a id="a_comment_author_3850695" href="https://www.cnblogs.com/abyss1114/" target="_blank">在下雨的Tokyo</a> <a href="http://msg.cnblogs.com/send/%E5%9C%A8%E4%B8%8B%E9%9B%A8%E7%9A%84Tokyo" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3850695" class="blog_comment_body">谢谢大神，教程很详细</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3850695,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3850695,'Bury',this)">反对(1)</a></div><span id="comment_3850695_avatar" style="display:none;">http://pic.cnblogs.com/face/1175237/20170601125555.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3860176" class="layer">#53楼</a><a name="3860176" id="comment_anchor_3860176"></a>  <span class="comment_date">2017-12-07 15:40</span> <a id="a_comment_author_3860176" href="https://www.cnblogs.com/hrxmomo/" target="_blank">奋斗吧胡小新</a> <a href="http://msg.cnblogs.com/send/%E5%A5%8B%E6%96%97%E5%90%A7%E8%83%A1%E5%B0%8F%E6%96%B0" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3860176" class="blog_comment_body">图文并茂，感谢大神分享，收获很多！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3860176,'Digg',this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3860176,'Bury',this)">反对(0)</a></div><span id="comment_3860176_avatar" style="display:none;">http://pic.cnblogs.com/face/u297852.jpg?id=27122609</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3865767" class="layer">#54楼</a><a name="3865767" id="comment_anchor_3865767"></a>  <span class="comment_date">2017-12-14 14:23</span> <a id="a_comment_author_3865767" href="http://home.cnblogs.com/u/985621/" target="_blank">罗誉</a> <a href="http://msg.cnblogs.com/send/%E7%BD%97%E8%AA%89" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3865767" class="blog_comment_body">讲的很清晰，通俗易懂，顶一个</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3865767,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3865767,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3887187" class="layer">#55楼</a><a name="3887187" id="comment_anchor_3887187"></a>  <span class="comment_date">2018-01-11 20:05</span> <a id="a_comment_author_3887187" href="https://www.cnblogs.com/qingduzhai/" target="_blank">轻度宅</a> <a href="http://msg.cnblogs.com/send/%E8%BD%BB%E5%BA%A6%E5%AE%85" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3887187" class="blog_comment_body">讲的很不错!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3887187,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3887187,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3889923" class="layer">#56楼</a><a name="3889923" id="comment_anchor_3889923"></a>  <span class="comment_date">2018-01-16 11:00</span> <a id="a_comment_author_3889923" href="https://www.cnblogs.com/zhanchaohan/" target="_blank">Jachs</a> <a href="http://msg.cnblogs.com/send/Jachs" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3889923" class="blog_comment_body">Mark</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3889923,'Digg',this)">支持(2)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3889923,'Bury',this)">反对(0)</a></div><span id="comment_3889923_avatar" style="display:none;">http://pic.cnblogs.com/face/740837/20160629202816.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3894280" class="layer">#57楼</a><a name="3894280" id="comment_anchor_3894280"></a>  <span class="comment_date">2018-01-21 06:59</span> <a id="a_comment_author_3894280" href="http://home.cnblogs.com/u/604873/" target="_blank">云思想</a> <a href="http://msg.cnblogs.com/send/%E4%BA%91%E6%80%9D%E6%83%B3" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3894280" class="blog_comment_body">这教程也太详细了，，，</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3894280,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3894280,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3895217" class="layer">#58楼</a><a name="3895217" id="comment_anchor_3895217"></a>  <span class="comment_date">2018-01-22 18:06</span> <a id="a_comment_author_3895217" href="https://www.cnblogs.com/Vrapile/" target="_blank">Vrapile</a> <a href="http://msg.cnblogs.com/send/Vrapile" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3895217" class="blog_comment_body">博主写的很好，点赞！<br>顺着流程只碰到一个错误，就是Django会获取计算机用户名称，名称是中文会报编码解码之类的错误，把计算机名改为英文就好了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3895217,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3895217,'Bury',this)">反对(0)</a></div><span id="comment_3895217_avatar" style="display:none;">http://pic.cnblogs.com/face/1094982/20170510230012.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3897818" class="layer">#59楼</a><a name="3897818" id="comment_anchor_3897818"></a>  <span class="comment_date">2018-01-26 10:08</span> <a id="a_comment_author_3897818" href="https://www.cnblogs.com/wglIT/" target="_blank">青夜yuong</a> <a href="http://msg.cnblogs.com/send/%E9%9D%92%E5%A4%9Cyuong" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3897818" class="blog_comment_body">博主强大，简单易懂，化繁为简</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3897818,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3897818,'Bury',this)">反对(0)</a></div><span id="comment_3897818_avatar" style="display:none;">http://pic.cnblogs.com/face/745045/20161208152221.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3917925" class="layer">#60楼</a><a name="3917925" id="comment_anchor_3917925"></a>  <span class="comment_date">2018-03-08 16:25</span> <a id="a_comment_author_3917925" href="https://www.cnblogs.com/fhzheng/" target="_blank">风车车的表哥</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E8%BD%A6%E8%BD%A6%E7%9A%84%E8%A1%A8%E5%93%A5" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3917925" class="blog_comment_body">学习有乐趣…</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3917925,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3917925,'Bury',this)">反对(0)</a></div><span id="comment_3917925_avatar" style="display:none;">http://pic.cnblogs.com/face/u102802.jpg</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3929481" class="layer">#61楼</a><a name="3929481" id="comment_anchor_3929481"></a>  <span class="comment_date">2018-03-21 20:22</span> <a id="a_comment_author_3929481" href="https://www.cnblogs.com/yifeixu/" target="_blank">F君君</a> <a href="http://msg.cnblogs.com/send/F%E5%90%9B%E5%90%9B" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3929481" class="blog_comment_body">谢谢楼主简洁清晰的入门文章。<br>有一点想提一下：创建表后，是不是要到admin.py中注册一下对应的表？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3929481,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3929481,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3929767" class="layer">#62楼</a><a name="3929767" id="comment_anchor_3929767"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2018-03-22 08:49</span> <a id="a_comment_author_3929767" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3929767" class="blog_comment_body"><a href="#3929481" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3929481);">@</a>
+F君君<br>如果不准备在admin后台中管理某个模型，那么就不需要在admin.py中注册对应的模型。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3929767,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3929767,'Bury',this)">反对(0)</a></div><span id="comment_3929767_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3938059" class="layer">#63楼</a><a name="3938059" id="comment_anchor_3938059"></a>  <span class="comment_date">2018-03-30 17:46</span> <a id="a_comment_author_3938059" href="http://home.cnblogs.com/u/1069580/" target="_blank">尼桑</a> <a href="http://msg.cnblogs.com/send/%E5%B0%BC%E6%A1%91" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3938059" class="blog_comment_body">Excellent</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3938059,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3938059,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3962412" class="layer">#64楼</a><a name="3962412" id="comment_anchor_3962412"></a>  <span class="comment_date">2018-04-27 13:37</span> <a id="a_comment_author_3962412" href="https://www.cnblogs.com/KZLEARNER/" target="_blank">kzkzkzkz</a> <a href="http://msg.cnblogs.com/send/kzkzkzkz" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3962412" class="blog_comment_body"><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/1184805-20180427133635869-1137747408.png" alt="" "="" border="0"><br>请问我的怎么没有动态展示，在pycharm也看不到实时输入的数据</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3962412,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3962412,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3978244" class="layer">#65楼</a><a name="3978244" id="comment_anchor_3978244"></a>  <span class="comment_date">2018-05-20 12:34</span> <a id="a_comment_author_3978244" href="https://www.cnblogs.com/gaojs/" target="_blank">杭州山不高</a> <a href="http://msg.cnblogs.com/send/%E6%9D%AD%E5%B7%9E%E5%B1%B1%E4%B8%8D%E9%AB%98" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3978244" class="blog_comment_body">有最新的Django2.0的吗？</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3978244,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3978244,'Bury',this)">反对(0)</a></div><span id="comment_3978244_avatar" style="display:none;">http://pic.cnblogs.com/face/583506/20131118181131.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3982215" class="layer">#66楼</a><a name="3982215" id="comment_anchor_3982215"></a>  <span class="comment_date">2018-05-25 16:15</span> <a id="a_comment_author_3982215" href="http://home.cnblogs.com/u/1117568/" target="_blank">晴天waa</a> <a href="http://msg.cnblogs.com/send/%E6%99%B4%E5%A4%A9waa" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3982215" class="blog_comment_body">楼主这个文章对于入门者了解Django来说，真的写得太好了，图片中的注释也很详细，看完就能理解，感谢楼主的这篇文章！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3982215,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3982215,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3985694" class="layer">#67楼</a><a name="3985694" id="comment_anchor_3985694"></a>  <span class="comment_date">2018-05-29 15:29</span> <a id="a_comment_author_3985694" href="https://www.cnblogs.com/1314520xh/" target="_blank">流浪诗人1024</a> <a href="http://msg.cnblogs.com/send/%E6%B5%81%E6%B5%AA%E8%AF%97%E4%BA%BA1024" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3985694" class="blog_comment_body">写的很棒！</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3985694,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3985694,'Bury',this)">反对(0)</a></div><span id="comment_3985694_avatar" style="display:none;">http://pic.cnblogs.com/face/1113099/20171228222043.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4005143" class="layer">#68楼</a><a name="4005143" id="comment_anchor_4005143"></a>  <span class="comment_date">2018-06-25 11:39</span> <a id="a_comment_author_4005143" href="http://home.cnblogs.com/u/1272909/" target="_blank">Decepticons</a> <a href="http://msg.cnblogs.com/send/Decepticons" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4005143" class="blog_comment_body">写的很棒!</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4005143,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4005143,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4016144" class="layer">#69楼</a><a name="4016144" id="comment_anchor_4016144"></a>  <span class="comment_date">2018-07-09 14:41</span> <a id="a_comment_author_4016144" href="http://home.cnblogs.com/u/630094/" target="_blank">风云草堂</a> <a href="http://msg.cnblogs.com/send/%E9%A3%8E%E4%BA%91%E8%8D%89%E5%A0%82" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4016144" class="blog_comment_body">相当不错</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4016144,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4016144,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4023782" class="layer">#70楼</a><a name="4023782" id="comment_anchor_4023782"></a>  <span class="comment_date">2018-07-19 10:04</span> <a id="a_comment_author_4023782" href="https://www.cnblogs.com/wuxunyan/" target="_blank">enjoyzier</a> <a href="http://msg.cnblogs.com/send/enjoyzier" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4023782" class="blog_comment_body"><a href="#3985694" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3985694);">@</a>
+流浪诗人1024<br>是</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4023782,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4023782,'Bury',this)">反对(0)</a></div><span id="comment_4023782_avatar" style="display:none;">http://pic.cnblogs.com/face/1233035/20180817190009.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4025222" class="layer">#71楼</a><a name="4025222" id="comment_anchor_4025222"></a>  <span class="comment_date">2018-07-20 21:01</span> <a id="a_comment_author_4025222" href="https://www.cnblogs.com/zhangbo2008/" target="_blank">张博的博客</a> <a href="http://msg.cnblogs.com/send/%E5%BC%A0%E5%8D%9A%E7%9A%84%E5%8D%9A%E5%AE%A2" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4025222" class="blog_comment_body">我也是动态网页实现不了.不往表格里面加</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4025222,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4025222,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4085294" class="layer">#72楼</a><a name="4085294" id="comment_anchor_4085294"></a>  <span class="comment_date">2018-10-10 10:48</span> <a id="a_comment_author_4085294" href="https://www.cnblogs.com/jenneyforis/" target="_blank">JenneyForis</a> <a href="http://msg.cnblogs.com/send/JenneyForis" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4085294" class="blog_comment_body">Thanks for share</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4085294,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4085294,'Bury',this)">反对(0)</a></div><span id="comment_4085294_avatar" style="display:none;">http://pic.cnblogs.com/face/1148980/20170418112033.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4085445" class="layer">#73楼</a><a name="4085445" id="comment_anchor_4085445"></a>  <span class="comment_date">2018-10-10 13:31</span> <a id="a_comment_author_4085445" href="https://www.cnblogs.com/zhangrx1987/" target="_blank">zhangrx</a> <a href="http://msg.cnblogs.com/send/zhangrx" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4085445" class="blog_comment_body">第四步编写路由这边，我的版本好像不行了。我改成了如下的才可以<br>1、不使用正则表达式<br>2、url 改成 path<br><br><img src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/1504080-20181010133108110-1192655983.png" alt="" "="" border="0"></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4085445,'Digg',this)">支持(1)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4085445,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4127888" class="layer">#74楼</a><a name="4127888" id="comment_anchor_4127888"></a>  <span class="comment_date">2018-12-01 14:10</span> <a id="a_comment_author_4127888" href="https://www.cnblogs.com/paisen/" target="_blank">你坚持了吗</a> <a href="http://msg.cnblogs.com/send/%E4%BD%A0%E5%9D%9A%E6%8C%81%E4%BA%86%E5%90%97" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4127888" class="blog_comment_body"><a href="#3962412" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3962412);">@</a>
+kzkzkzkz<br>你要把添加的数据复制给user_list<br>user_list=[{"user":"jack","passwd":"1234"},{"user":"tom","passwd":"123"}]<br>def index(request):<br>    if request.method=='POST':<br>        username=request.POST.get("username",None)<br>        passwd=request.POST.get("passwd",None)<br>        print(username,passwd)<br>        user={}<br>        user["user"]=username<br>        user["passwd"]=passwd<br>        user_list.append(user)<br>    return render(request,"index.html",{"data":user_list})</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4127888,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4127888,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4204502" class="layer">#75楼</a><a name="4204502" id="comment_anchor_4204502"></a>  <span class="comment_date">2019-03-16 18:57</span> <a id="a_comment_author_4204502" href="http://home.cnblogs.com/u/1539579/" target="_blank">邱小猪的爹爹</a> <a href="http://msg.cnblogs.com/send/%E9%82%B1%E5%B0%8F%E7%8C%AA%E7%9A%84%E7%88%B9%E7%88%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4204502" class="blog_comment_body">刘江老师，请问一下，创建APP那个步骤，出现与我运行的Window版本不兼容，怎么办。</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4204502,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4204502,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4208951" class="layer">#76楼</a><a name="4208951" id="comment_anchor_4208951"></a>  <span class="comment_date">2019-03-21 10:10</span> <a id="a_comment_author_4208951" href="https://www.cnblogs.com/SOSOS/" target="_blank">SOSOS's BLog</a> <a href="http://msg.cnblogs.com/send/SOSOS%27s%20BLog" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4208951" class="blog_comment_body">File "D:\wwwroot2\python\FirstWebDemo\FirstWebDemo\urls.py", line 18, in &lt;module&gt;<br>    from FirstWebDemo import views<br>ImportError: cannot import name 'views' from 'FirstWebDemo' (D:\wwwroot2\python\FirstWebDemo\FirstWebDemo\__init__.py)<br><br><br><br>请问这个是什么原因?</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4208951,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4208951,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4223138" class="layer">#77楼</a><a name="4223138" id="comment_anchor_4223138"></a>  <span class="comment_date">2019-04-05 05:21</span> <a id="a_comment_author_4223138" href="http://home.cnblogs.com/u/1652498/" target="_blank">stormsha</a> <a href="http://msg.cnblogs.com/send/stormsha" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4223138" class="blog_comment_body">老师的教程是我目前见过最详细的，受教了很多，自己的小站终于搭建起来了<br><a href="https://stormsha.com/" target="_blank">https://stormsha.com </a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4223138,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4223138,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240073" class="layer">#78楼</a><a name="4240073" id="comment_anchor_4240073"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:09</span> <a id="a_comment_author_4240073" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240073" class="blog_comment_body"><a href="#3847687" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3847687);">@</a>
+PythonLearner<br>你看看是不是数据表没有创建</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240073,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240073,'Bury',this)">反对(0)</a></div><span id="comment_4240073_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240083" class="layer">#79楼</a><a name="4240083" id="comment_anchor_4240083"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:12</span> <a id="a_comment_author_4240083" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240083" class="blog_comment_body"><a href="#3929481" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3929481);">@</a>
+F君君<br>使用admin后台的时候，才需要到admin.py里去注册</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240083,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240083,'Bury',this)">反对(0)</a></div><span id="comment_4240083_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240084" class="layer">#80楼</a><a name="4240084" id="comment_anchor_4240084"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:12</span> <a id="a_comment_author_4240084" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240084" class="blog_comment_body"><a href="#3962412" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3962412);">@</a>
+kzkzkzkz<br>刷新一下页面试试</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240084,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240084,'Bury',this)">反对(0)</a></div><span id="comment_4240084_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240085" class="layer">#81楼</a><a name="4240085" id="comment_anchor_4240085"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:13</span> <a id="a_comment_author_4240085" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240085" class="blog_comment_body"><a href="#3978244" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,3978244);">@</a>
+杭州山不高<br>有的！而且是DJango2.1<br><a href="http://www.liujiangblog.com/blog/36/" target="_blank">http://www.liujiangblog.com/blog/36/</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240085,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240085,'Bury',this)">反对(0)</a></div><span id="comment_4240085_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240086" class="layer">#82楼</a><a name="4240086" id="comment_anchor_4240086"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:14</span> <a id="a_comment_author_4240086" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240086" class="blog_comment_body"><a href="#4085445" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,4085445);">@</a>
+zhangrx<br>这里使用的是django1.10版本，它的路由编写方式和2.x不一样。<br>可以去这里看Django2.1版本的博文：<br><a href="http://www.liujiangblog.com/blog/36/" target="_blank">http://www.liujiangblog.com/blog/36/</a></div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240086,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240086,'Bury',this)">反对(0)</a></div><span id="comment_4240086_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4240091" class="layer">#83楼</a><a name="4240091" id="comment_anchor_4240091"></a>[<span class="louzhu">楼主</span>]  <span class="comment_date">2019-04-25 09:15</span> <a id="a_comment_author_4240091" href="https://www.cnblogs.com/feixuelove1009/" target="_blank">刘江liujiangblog.com</a> <a href="http://msg.cnblogs.com/send/%E5%88%98%E6%B1%9Fliujiangblog.com" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4240091" class="blog_comment_body"><a href="#4204502" title="查看所回复的评论" onclick="commentManager.renderComments(0,50,4204502);">@</a>
+邱小猪的爹爹<br>这种情况没见过，Python是跨平台的，Django是和平台无关的。与Windows不兼容，不知道什么原因....</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4240091,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4240091,'Bury',this)">反对(0)</a></div><span id="comment_4240091_avatar" style="display:none;">http://pic.cnblogs.com/face/948404/20160513160805.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#4248773" class="layer">#84楼</a><a name="4248773" id="comment_anchor_4248773"></a><span id="comment-maxId" style="display:none;">4248773</span><span id="comment-maxDate" style="display:none;">2019/5/6 16:24:33</span>  <span class="comment_date">2019-05-06 16:24</span> <a id="a_comment_author_4248773" href="https://www.cnblogs.com/wj-forever/" target="_blank">慕枫三生</a> <a href="http://msg.cnblogs.com/send/%E6%85%95%E6%9E%AB%E4%B8%89%E7%94%9F" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_4248773" class="blog_comment_body">学习了，对初学者来说是很棒的教程</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(4248773,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(4248773,'Bury',this)">反对(0)</a></div><span id="comment_4248773_avatar" style="display:none;">http://pic.cnblogs.com/face/1574419/20190423150317.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"><div class="pager"><a href="#!comments" onclick="commentManager.renderComments(1,50);return false;">&lt; Prev</a><a href="#!comments" onclick="commentManager.renderComments(1,50);return false;">1</a><span class="current">2</span></div></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-工控')">【推荐】超50万C++/C#源码: 大型实时仿真组态图形源码</a><br><a href="https://www.grapecity.com.cn/developer/spreadjs?utm_source=cnblogs&amp;utm_medium=blogpage&amp;utm_term=bottom&amp;utm_content=SpreadJS&amp;utm_campaign=community" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-SpreadJS')">【前端】SpreadJS表格控件，可嵌入系统开发的在线Excel</a><br><a href="https://gitee.com/enterprises?from=bky-1" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-gitee')">【推荐】码云企业版，高效的企业级软件协作开发管理平台</a><br><a href="https://q.cnblogs.com/" target="_blank" onclick="ga('send', 'event', 'Link', 'click', 'T2-博问')">【推荐】程序员问答平台，解决您开发中遇到的技术难题</a><br></div>
+<div id="opt_under_post"></div>
+<script async="async" src="%E7%AE%80%E7%BA%A6%E8%80%8C%E4%B8%8D%E7%AE%80%E5%8D%95%E7%9A%84Django2.2%20%E6%96%B0%E6%89%8B%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%20-%20%E5%88%98%E6%B1%9Fliujiangblog.com%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/gpt.js"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+<script>
+  googletag.cmd.push(function() {
+        googletag.defineSlot('/1090369/C1', [300, 250], 'div-gpt-ad-1546353474406-0').addService(googletag.pubads());
+        googletag.defineSlot('/1090369/C2', [468, 60], 'div-gpt-ad-1539008685004-0').addService(googletag.pubads());
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();
+  });
+</script>
+<div id="cnblogs_c1" class="c_ad_block">
+    <div id="div-gpt-ad-1546353474406-0" style="height:250px; width:300px;"></div>
+</div>
+<div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a href="https://www.cnblogs.com/nihao123/p/7009010.html" target="_blank" onclick="clickRecomItmem(7009010)">Django简介</a><br>·  <a href="https://www.cnblogs.com/qianyuliang/p/6814376.html" target="_blank" onclick="clickRecomItmem(6814376)">Django 简单教程（入门级）</a><br>·  <a href="https://www.cnblogs.com/feiyumo/p/8298016.html" target="_blank" onclick="clickRecomItmem(8298016)">Django的使用</a><br>·  <a href="https://www.cnblogs.com/hellowcf/p/7307863.html" target="_blank" onclick="clickRecomItmem(7307863)">django之python网站开发基础</a><br>·  <a href="https://www.cnblogs.com/huangxu/p/6723404.html" target="_blank" onclick="clickRecomItmem(6723404)">Django入门</a><br></div></div>
+<div id="cnblogs_c2" class="c_ad_block">
+    <div id="div-gpt-ad-1539008685004-0" style="height:60px; width:468px;"></div>
+</div>
+<div id="under_post_kb"><div class="itnews c_ad_block"><b>最新新闻</b>：<br> ·  <a href="https://news.cnblogs.com/n/628179/" target="_blank">智能扬声器监听心搏停止的声音信号</a><br> ·  <a href="https://news.cnblogs.com/n/628178/" target="_blank">万万没想到！阿司匹林居然是柳树皮提炼的？</a><br> ·  <a href="https://news.cnblogs.com/n/628177/" target="_blank">如果时空是颗粒状的......</a><br> ·  <a href="https://news.cnblogs.com/n/628176/" target="_blank">AMD全球首款7nm游戏卡Radeon VII停产退市：发布仅4个月</a><br> ·  <a href="https://news.cnblogs.com/n/628175/" target="_blank">国科微基于全国产主控SSD即将上市：最大4TB，集成国密算法</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+ if(enablePostBottom()) {
+    codeHighlight();
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverT2();
+    deliverC1();
+    deliverC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);  
+}
+</script>
+</div>
+
+    
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="Calendar" cellspacing="0" cellpadding="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2019/06/01');return false;">&lt;</a></td><td align="center">2019年7月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2019/08/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td align="center">3</td><td align="center">4</td><td align="center">5</td><td class="CalWeekendDay" align="center">6</td></tr><tr><td class="CalWeekendDay" align="center">7</td><td align="center">8</td><td align="center">9</td><td align="center">10</td><td align="center">11</td><td class="CalTodayDay" align="center">12</td><td class="CalWeekendDay" align="center">13</td></tr><tr><td class="CalWeekendDay" align="center">14</td><td align="center">15</td><td align="center">16</td><td align="center">17</td><td align="center">18</td><td align="center">19</td><td class="CalWeekendDay" align="center">20</td></tr><tr><td class="CalWeekendDay" align="center">21</td><td align="center">22</td><td align="center">23</td><td align="center">24</td><td align="center">25</td><td align="center">26</td><td class="CalWeekendDay" align="center">27</td></tr><tr><td class="CalWeekendDay" align="center">28</td><td align="center">29</td><td align="center">30</td><td align="center">31</td><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td></tr><tr><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td><td class="CalOtherMonthDay" align="center">8</td><td class="CalOtherMonthDay" align="center">9</td><td class="CalOtherMonthDay" align="center">10</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block"></div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="https://www.cnblogs.com/feixuelove1009/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="https://www.cnblogs.com/feixuelove1009/category/1158337.html">Django从入门到精通(21)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_scorerank" class="sidebar-block">
+<div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	116691
+	</li>
+	<li class="liRank">
+		排名 -	4099
+	</li>
+</ul>
+</div>
+
+
+</div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="https://www.cnblogs.com/feixuelove1009/p/5823135.html">1. 简约而不简单的Django2.2 新手图文教程(207421)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5910384.html">2. “全能”选手—Django 1.10文档中文版Part1(42733)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5955332.html">3. 在Pycharm中使用GitHub(40190)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/6143539.html">4. 基于python的七种经典排序算法(21878)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/6950102.html">5. 用Python玩转微信（一）(18256)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/7989720.html">6. Django 2.0 新特性 抢先看！(16992)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8004775.html">7. 为什么选择Django？(14470)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8399338.html">8. Django 2.0 新款URL配置详解(13861)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/6148357.html">9. 常用查找数据结构及算法（Python实现）(11672)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5922347.html">10. “全能”选手—Django 1.10文档中文版Part2(10761)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="https://www.cnblogs.com/feixuelove1009/p/5823135.html">1. 简约而不简单的Django2.2 新手图文教程(105)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8203651.html">2. 从体制内的国家干部转变为自由职业者-2017年总结(74)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5955332.html">3. 在Pycharm中使用GitHub(32)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5910384.html">4. “全能”选手—Django 1.10文档中文版Part1(25)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/5922347.html">5. “全能”选手—Django 1.10文档中文版Part2(11)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/6143539.html">6. 基于python的七种经典排序算法(8)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/6148357.html">7. 常用查找数据结构及算法（Python实现）(6)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8403581.html">8. Django简介--Django从入门到精通系列教程(4)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8387774.html">9. IronFort---基于Django2.0和Websocket的堡垒机(4)</a></li><li><a href="https://www.cnblogs.com/feixuelove1009/p/8004775.html">10. 为什么选择Django？(4)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2019 刘江liujiangblog.com
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+<!--PageEndHtml Block Begin-->
+<h1>作者：刘江</h1>
+<h1>版权所有，出自www.cnblogs.com/feixuelove1009</h1>
+<!--PageEndHtml Block End-->
+
+
+</body></html>
